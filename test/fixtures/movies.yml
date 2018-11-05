@@ -4,8 +4,14 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+titanic:
+  title: titanic
+  inventory: 10
+
+jaws:
+  title: jaws
+  inventory: 1
+
+grease:
+  title: grease
+  inventory: 0
