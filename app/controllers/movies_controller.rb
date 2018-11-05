@@ -8,7 +8,7 @@ class MoviesController < ApplicationController
   def show
     movie_id = params[:id]
     movie = Movie.find_by(id: movie_id)
-
+    
     if movie
       render json: jsonify(movie)
     else

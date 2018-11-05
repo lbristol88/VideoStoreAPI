@@ -1,15 +1,9 @@
 require 'faker'
+require 'pry'
 
-JSON.parse(File.read('db/seeds/customers.json')).each do |customer|
-  Customer.create!(customer)
-end
-
-JSON.parse(File.read('db/seeds/movies.json')).each do |movie|
-  Movie.create!(movie)
-end
-
+binding.pry
 rental_json = []
-50.times do
+5.times do
   rental = {
     "checkout_date": Faker::Date.backward(14),
     "due_date": Faker::Date.forward(14),
@@ -18,12 +12,9 @@ rental_json = []
   }
 
   rental_json << rental
+
 end
 
 File.open("db/seeds/rentals.json","w") do |f|
   f.write(rental_json.to_json)
-end
-
-JSON.parse(File.read('db/seeds/rentals.json')).each do |rental|
-  Rental.create!(rental)
 end
