@@ -48,4 +48,41 @@ describe RentalsController do
       expect(body).must_include "errors"
     end
   end
+
+  describe "check in" do
+
+    before do
+      @rental = rentals(:one)
+
+      @existing_rental = {
+        rental: {
+          movie_id: @rental.movie.id,
+          customer_id: @rental.customer.id
+        }
+      }
+    end
+    it "successfully updates rental with return date" do
+
+
+      expect(@rental.return_date).must_be_nil
+      post check_in_path, params: @existing_rental
+
+      body = parse_body(expected_type: Hash)
+      expect(body).must_include "id"
+      @rental.reload
+      expect(@rental.return_date.strftime("%m/%d/%Y")).must_equal Time.now.strftime("%m/%d/%Y")
+
+    end
+
+    it "does not successfully update if invalid" do
+
+      @rental.destroy
+
+      post check_in_path, params: @existing_rental
+
+      body = parse_body(expected_type: Hash, expected_status: :not_found)
+      expect(body).must_include "errors"
+
+    end
+  end
 end
