@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   resources :customers, only: [:index]
   resources :movies, only: [:index, :show, :create]
 
-  get '/rentals/check_in', to: 'rentals#check_in', as: 'check_in'
   post '/rentals/check_out', to: 'rentals#check_out', as: 'check_out'
+  post '/rentals/check_in', to: 'rentals#check_in', as: 'check_in'
 
   get '/customers/zomg', to: 'customers#zomg', as: 'zomg'
 
