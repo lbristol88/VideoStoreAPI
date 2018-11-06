@@ -7,9 +7,9 @@
 one:
   movie: titanic
   customer: layla
-  checkout_date: "2018-10-31"
+  due_date: "2018-10-31"
 
 two:
   movie: jaws
   customer: aurea
-  checkout_date: "2018-11-13"
+  due_date: "2018-11-13"
