@@ -19,19 +19,4 @@ describe Rental do
 
   end
 
-  describe 'validations' do
-
-    it 'is valid when checkout_date is present' do
-      expect( rental ).must_be :valid?
-
-    end
-
-    it 'is invalid when checkout_date is missing' do
-      rental.checkout_date = nil
-      expect( rental ).wont_be :valid?
-
-    end
-
-  end
-
 end
