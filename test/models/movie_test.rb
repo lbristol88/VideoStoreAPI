@@ -44,5 +44,36 @@ describe Movie do
 
   end
 
+  describe "available inventory" do
+
+    it 'successfully returns available inventory of a movie' do
+      expect(movie.available_inventory).must_equal 9
+    end
+
+    it 'decreases when a customer has checked out a movie' do
+
+      prev_inventory = movie.available_inventory
+
+
+      Rental.create!(movie_id: movie.id, customer_id: customers(:aurea).id)
+
+      movie.reload
+      expect(movie.available_inventory).must_equal prev_inventory - 1
+    end
+
+    it 'increases when a customer has checked in a movie' do
+
+      prev_inventory = movie.available_inventory
+
+      rental = Rental.find_by(movie_id: movie.id, customer_id: customers(:layla).id)
+
+      rental.update(return_date: Time.now )
+
+      movie.reload
+
+      expect(movie.available_inventory).must_equal prev_inventory + 1
+    end
+  end
+
 
 end

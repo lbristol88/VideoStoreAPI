@@ -5,11 +5,6 @@ class CustomersController < ApplicationController
     render json: jsonify(customers), status: :ok
   end
 
-
-  # def zomg
-  #   render json: { :zomg => "it works"}
-  # end
-
 private
   #strong params
   def customer_params
