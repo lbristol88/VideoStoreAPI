@@ -2,6 +2,7 @@ class RentalsController < ApplicationController
 
   # creating a rental
   def check_out
+
     rental = Rental.new(rental_params)
     rental.due_date = (Time.now + (60 * 60 * 24 * 7))
 
@@ -20,7 +21,7 @@ class RentalsController < ApplicationController
       rental.update(return_date: Time.now )
       render json: { id: rental.id }, status: :ok
     else
-      render_error(:not_found, { rental_id: ["Rental not found"] })
+      render_error(:not_found, { rental_id: ["rental not found"] })
     end
   end
 
@@ -28,7 +29,8 @@ class RentalsController < ApplicationController
   private
   #strong params
   def rental_params
-    params.require(:rental).permit(:movie_id, :customer_id)
+    params.permit(:movie_id, :customer_id)
+
   end
 
   def jsonify(rental_data)

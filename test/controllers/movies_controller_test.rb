@@ -1,7 +1,7 @@
 require 'test_helper'
 
 describe MoviesController do
-  MOVIE_FIELDS = %w(title overview release_date inventory).sort
+  MOVIE_FIELDS = %w(id title overview release_date inventory available_inventory).sort
 
   def parse_body(expected_type:, expected_status: :success)
     must_respond_with expected_status
@@ -64,10 +64,8 @@ describe MoviesController do
 
       let (:movie_data) {
         {
-          movie: {
-            title: "test movie",
-            inventory: 10
-          }
+          title: "test movie",
+          inventory: 10
         }
       }
 
@@ -82,14 +80,14 @@ describe MoviesController do
 
         movie = Movie.find(body["id"].to_i)
 
-        expect(movie.title).must_equal movie_data[:movie][:title]
+        expect(movie.title).must_equal movie_data[:title]
 
 
       end
 
       it 'does not successfully return if invalid' do
 
-        movie_data[:movie][:title] = nil
+        movie_data[:title] = nil
 
         expect {
           post movies_path, params: movie_data

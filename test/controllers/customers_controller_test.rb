@@ -1,7 +1,7 @@
 require 'test_helper'
 
 describe CustomersController do
-  CUSTOMER_FIELDS = %w(name registered_at address city state postal_code phone).sort
+  CUSTOMER_FIELDS = %w(id name registered_at address city state postal_code phone movies_checked_out_count).sort
 
   def parse_body(expected_type:, expected_status: :success)
     must_respond_with expected_status
@@ -21,7 +21,7 @@ describe CustomersController do
       body = parse_body(expected_type: Array)
 
       body.each do |customer|
-    
+
         expect(customer.keys.sort).must_equal CUSTOMER_FIELDS
       end
     end

@@ -6,8 +6,6 @@ class Movie < ApplicationRecord
   validates :inventory, presence: true, numericality: { greater_than_or_equal_to: 0 }
 
   def available_inventory
-    return 0
+    return self.inventory - self.rentals.count{ |rental| rental.return_date.nil? }
   end
-
-
 end
