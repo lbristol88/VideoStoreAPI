@@ -28,7 +28,7 @@ class MoviesController < ApplicationController
 private
   #strong params
   def movie_params
-    params.require(:movie).permit(:title, :overview, :release_date, :inventory)
+    params.permit(:title, :overview, :release_date, :inventory)
   end
 
   def jsonify(movie_data)
