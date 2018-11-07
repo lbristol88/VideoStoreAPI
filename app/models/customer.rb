@@ -4,4 +4,8 @@ class Customer < ApplicationRecord
 
   validates :name, presence: true
 
+  def movies_checked_out_count
+    return 0
+  end
+
 end

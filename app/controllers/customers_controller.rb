@@ -17,7 +17,12 @@ private
   end
 
   def jsonify(customer_data)
-    return customer_data.as_json(only: [:name, :registered_at, :address, :city, :state, :postal_code, :phone])
+    customer_list = customer_data.as_json(only: [:id, :name, :registered_at, :address, :city, :state, :postal_code, :phone], :methods => :movies_checked_out_count)
+
+  #   # customer_list.each do |customer|
+  #   #   customer.merge({"movies_checked_out_count": Customer.find_by(id: customer["id"]).movies_checked_out_count})
+  #   # end
+  #   # return customer_list
   end
 
 end
