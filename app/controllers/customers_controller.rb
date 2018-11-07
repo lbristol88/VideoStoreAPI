@@ -8,7 +8,7 @@ class CustomersController < ApplicationController
 private
   #strong params
   def customer_params
-    params.require(:customer).permit(:name, :registered_at, :address, :city, :state, :postal_code, :phone)
+    params.permit(:name, :registered_at, :address, :city, :state, :postal_code, :phone)
   end
 
   def jsonify(customer_data)

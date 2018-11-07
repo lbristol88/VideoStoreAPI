@@ -14,10 +14,10 @@ describe RentalsController do
 
   let (:rental_data) {
     {
-      rental: {
-        movie_id: Movie.first.id,
-        customer_id: Customer.first.id
-      }
+
+      movie_id: Movie.first.id,
+      customer_id: Customer.first.id
+
     }
   }
 
@@ -36,7 +36,7 @@ describe RentalsController do
 
     it "does not successfully create if invalid" do
 
-      movie = Movie.find_by(id: rental_data[:rental][:movie_id] )
+      movie = Movie.find_by(id: rental_data[:movie_id] )
       movie.destroy
 
       expect{
@@ -55,10 +55,8 @@ describe RentalsController do
       @rental = rentals(:one)
 
       @existing_rental = {
-        rental: {
-          movie_id: @rental.movie.id,
-          customer_id: @rental.customer.id
-        }
+        movie_id: @rental.movie.id,
+        customer_id: @rental.customer.id
       }
     end
     it "successfully updates rental with return date" do
